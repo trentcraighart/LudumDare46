@@ -25,10 +25,10 @@ public:
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
-		duck1.LoadFromFile("../Sprites/ChickenPeckLeft.png");
-		duck2.LoadFromFile("../Sprites/ChickenWalkLeft.png");
-		duck3.LoadFromFile("../Sprites/ChickenIdleLeft.png");
-		duck4.LoadFromFile("../Sprites/ChickenFlapLeft.png");
+		duck1.LoadFromFile("./Sprites/ChickenPeckLeft.png");
+		duck2.LoadFromFile("./Sprites/ChickenWalkLeft.png");
+		duck3.LoadFromFile("./Sprites/ChickenIdleLeft.png");
+		duck4.LoadFromFile("./Sprites/ChickenFlapLeft.png");
 		return true;
 	}
 
