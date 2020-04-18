@@ -1,50 +1,44 @@
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
-
+#include "player.h"
 
 
 #include <iostream>
 #include <string>
+#include <time.h>
 
 
-class Example : public olc::PixelGameEngine
+class Game : public olc::PixelGameEngine
 {
 public:
-	Example()
+	Player* player;
+	Game()
 	{
-		sAppName = "Example";
+		player = NULL;
+		sAppName = "Chicken of Legend";
 	}
 
 public:
-	olc::Sprite duck1;
-	olc::Sprite duck2;
-	olc::Sprite duck3;
-	olc::Sprite duck4;
-	int tick = 0;
-	int frame = 0;
+
+
+
 	bool OnUserCreate() override
 	{
+
+		player = new Player();
 		// Called once at the start, so create things here
-		duck1.LoadFromFile("./Sprites/ChickenPeckLeft.png");
-		duck2.LoadFromFile("./Sprites/ChickenWalkLeft.png");
-		duck3.LoadFromFile("./Sprites/ChickenIdleLeft.png");
-		duck4.LoadFromFile("./Sprites/ChickenFlapLeft.png");
 		return true;
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
-		tick++;
-		if (tick % 200 == 0) {
-			frame++;
-			if (frame > 3) {
-				frame = 0;
-			}
-		}
-		DrawPartialSprite(32, 32, &duck1, (frame * 16), 0, 16, 16, 2);
-		DrawPartialSprite(32*2, 32*2, &duck2, (frame * 16), 0, 16, 16, 2);
-		DrawPartialSprite(32*3, 32*3, &duck3, (frame * 16), 0, 16, 16, 2);
-		DrawPartialSprite(32*4, 32*4, &duck4, (frame * 16), 0, 16, 16, 2);
+		Clear(olc::DARK_GREY);
+		player->step(this, fElapsedTime);
+
+		//DrawPartialSprite(32, 32, &duck1, (frame % 4 * 16), 0, 16, 16, 4);
+		//DrawPartialSprite(32*2, 32*2, &duck2, (frame * 16), 0, 16, 16, 2);
+		//DrawPartialSprite(32*3, 32*3, &duck3, (frame * 16), 0, 16, 16, 2);
+		//DrawPartialSprite(32*4, 32*4, &duck4, (frame * 16), 0, 16, 16, 2);
 		// called once per frame
 		/*for (int x = 0; x < ScreenWidth(); x++)
 			for (int y = 0; y < ScreenHeight(); y++)
@@ -57,8 +51,8 @@ public:
 
 int main()
 {
-	Example demo;
-	if (demo.Construct(256, 240, 4, 4))
+	Game demo;
+	if (demo.Construct(500, 500, 4, 4))
 		demo.Start();
 
 	return 0;
