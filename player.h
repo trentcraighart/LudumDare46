@@ -25,12 +25,14 @@ private:
 
 	float timeSinceUpdate;
 	olc::Sprite** animationArray;
+	olc::Decal** decalArray;
 
 
 
 public:
 	Player();
 
+	void loadPNGAssets();
 	void step(olc::PixelGameEngine *, float);
 	void checkKey(olc::PixelGameEngine *, float);
 	void updatePosition(float);

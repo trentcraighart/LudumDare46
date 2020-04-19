@@ -12,9 +12,12 @@ class Game : public olc::PixelGameEngine
 {
 public:
 	Player* player;
+	olc::Sprite* wallpaperSprite;
+	olc::Decal* wallpaperDecal;
 	Game()
 	{
 		player = NULL;
+		wallpaperSprite = NULL;
 		sAppName = "Chicken of Legend";
 	}
 
@@ -26,24 +29,21 @@ public:
 	{
 
 		player = new Player();
+		wallpaperSprite = new olc::Sprite();
+		wallpaperSprite->LoadFromFile("./Sprites/Wallpaper1.png");
+		wallpaperDecal = new olc::Decal(wallpaperSprite);
 		// Called once at the start, so create things here
 		return true;
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
-		Clear(olc::DARK_GREY);
+		//Clear(olc::DARK_GREY);
+
+
+		DrawDecal({0, 0}, wallpaperDecal);
 		player->step(this, fElapsedTime);
 
-		//DrawPartialSprite(32, 32, &duck1, (frame % 4 * 16), 0, 16, 16, 4);
-		//DrawPartialSprite(32*2, 32*2, &duck2, (frame * 16), 0, 16, 16, 2);
-		//DrawPartialSprite(32*3, 32*3, &duck3, (frame * 16), 0, 16, 16, 2);
-		//DrawPartialSprite(32*4, 32*4, &duck4, (frame * 16), 0, 16, 16, 2);
-		// called once per frame
-		/*for (int x = 0; x < ScreenWidth(); x++)
-			for (int y = 0; y < ScreenHeight(); y++)
-				Draw(x, y, olc::Pixel(rand() % 255, rand() % 255, rand() % 255));
-		*/
 		return true;
 	}
 };
@@ -52,7 +52,7 @@ public:
 int main()
 {
 	Game demo;
-	if (demo.Construct(500, 500, 4, 4))
+	if (demo.Construct(1920, 1080, 1, 1, false))
 		demo.Start();
 
 	return 0;

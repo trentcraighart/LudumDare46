@@ -2,12 +2,10 @@
 
 
 Player::Player() {
-	animationArray = (olc::Sprite**)malloc(sizeof (olc::Sprite*) * 4);
-	animationArray[0] = new olc::Sprite("./Sprites/ChickenIdleLeft.png");
-	animationArray[1] = new olc::Sprite("./Sprites/ChickenWalkLeft.png");
-	animationArray[2] = new olc::Sprite("./Sprites/ChickenFlapLeft.png");
-	animationArray[3] = new olc::Sprite("./Sprites/ChickenPeckLeft.png");
 
+	loadPNGAssets();
+
+	//Setting Variables
 	frame = 0;
 	xDrawCoord = 32.0f;
 	yDrawCoord = 32.0f;
@@ -24,6 +22,21 @@ Player::Player() {
 	yspeedCap = 120.0f;
 	left = true;
 	timeSinceUpdate = 0;
+}
+
+void Player::loadPNGAssets() {
+	animationArray = (olc::Sprite**)malloc(sizeof(olc::Sprite*) * 8);
+	animationArray[0] = new olc::Sprite("./Sprites/ChickenIdleLeft.png");
+	animationArray[1] = new olc::Sprite("./Sprites/ChickenWalkLeft.png");
+	animationArray[2] = new olc::Sprite("./Sprites/ChickenFlapLeft.png");
+	animationArray[3] = new olc::Sprite("./Sprites/ChickenPeckLeft.png");
+	animationArray[4] = new olc::Sprite("./Sprites/ChickenIdleRight.png");
+	animationArray[5] = new olc::Sprite("./Sprites/ChickenWalkRight.png");
+	animationArray[6] = new olc::Sprite("./Sprites/ChickenFlapRight.png");
+	animationArray[7] = new olc::Sprite("./Sprites/ChickenPeckRight.png");
+	decalArray = (olc::Decal**)malloc(sizeof(olc::Decal*) * 8);
+	for (int i = 0; i < 8; i++)
+		decalArray[i] = new olc::Decal(animationArray[i]);
 }
 
 void Player::checkKey(olc::PixelGameEngine *engine, float fElapsedTime) {
@@ -109,10 +122,10 @@ void Player::drawPlayer(olc::PixelGameEngine *engine, float felapsedTime) {
 			state = 0;
 	}
 	if (left)
-		engine->DrawPartialSprite({ int(xDrawCoord), int(yDrawCoord) }, animationArray[state], { frame * 16, 0 }, { 16, 16 }, 2, olc::Sprite::NONE);
+		engine->DrawPartialDecal({ float(xDrawCoord), float(yDrawCoord) }, decalArray[state], { frame * 16.0f, 0.0f }, { 16.0f, 16.0f }, { 4.0f, 4.0f }, olc::WHITE);//, olc::Sprite::NONE);
 	else
-		engine->DrawPartialSprite({ int(xDrawCoord), int(yDrawCoord) }, animationArray[state], { frame * 16, 0 }, { 16, 16 }, 2, olc::Sprite::HORIZ);
-		
+		//engine->DrawPartialDecal({ int(xDrawCoord), int(yDrawCoord) }, decalArray[state], { frame * 16, 0 }, { 16, 16 }, {2, 2}, olc::Sprite::HORIZ);
+		engine->DrawPartialDecal({ float(xDrawCoord), float(yDrawCoord) }, decalArray[state+4], { frame * 16.0f, 0.0f }, { 16.0f, 16.0f }, { 4.0f, 4.0f }, olc::WHITE);
 
 }
 
