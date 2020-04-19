@@ -8,7 +8,7 @@ private:
 	int frame;
 	float timeSinceUpdate;
 
-	float xDrawCoord;
+	float xDrawCoord_;
 	float yDrawCoord;
 	int xSpeed;
 
@@ -25,6 +25,8 @@ private:
 	olc::Sprite** spriteArray;
 	olc::Decal** decalArray;
 
+	olc::Decal* Daisy;
+
 public:
 	BasicBadGuy();
 	~BasicBadGuy();
@@ -37,7 +39,10 @@ public:
 	bool checkPlayerCollision(float, float, float, float, float);
 	void updatePosition(float);
 	void drawBaddie(olc::PixelGameEngine*, float);
-	void takeDamage(olc::PixelGameEngine*, float);
+	void takeDamage();
+
+	float multiw();
+	float xDrawCoord();
 };
 
 

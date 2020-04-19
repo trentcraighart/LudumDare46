@@ -36,7 +36,7 @@ Player::Player(olc::PixelGameEngine* engine) {
 	width_ = 16;
 	height_ = 16;
 
-	xSpeedCap = 200.0f;
+	xSpeedCap = 300.0f;
 	ySpeedCap = 120.0f;
 	bLeft_ = true;
 	timeSinceUpdate = 0;
@@ -178,9 +178,13 @@ void Player::updatePosition(float felapsedTime) {
 	yGroundCoord += (ySpeed * felapsedTime);
 	
 	if (state_ == 2) { //Jumping
+		xSpeedCap = 400;
+		ySpeedCap = 240;
 		jumpStart += felapsedTime;
 		yDrawCoord_ = yGroundCoord - ((-0.5 * 300 * jumpStart * jumpStart) + (yJumpSpeed * jumpStart));
 		if (yDrawCoord_ > yGroundCoord) {
+			xSpeedCap = 200;
+			ySpeedCap = 120;
 			yDrawCoord_ = yGroundCoord;
 			state_ = 0;
 		}

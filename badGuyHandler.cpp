@@ -6,11 +6,7 @@
 #include <cstdlib>
 
 BadGuyHandler::BadGuyHandler() {
-
-	for (int i = 0; i < 5; i++) {
-		addBaddie();
-
-	}
+	timeSince = 0;
 }
 
 void BadGuyHandler::addBaddie() {
@@ -28,9 +24,34 @@ void BadGuyHandler::step(olc::PixelGameEngine* engine, float fEstimatedTime, Pla
 
 	int i = 0, size = baddies.size();
 	while (i < size) {
-		//printf("running loop %d\n", i);
 		BasicBadGuy* temp = baddies[i];
 		temp->step(engine, fEstimatedTime, playerx, playery, players, playerw, playerh, playerState);
+		i++;
+	}
+}
 
+void BadGuyHandler::addBasedOnTime(long remaining, float timeElapsed) {
+	timeSince += timeElapsed;
+	if (timeSince > 1) {
+		timeSince = 0;
+		if (rand() % 100 > remaining) {
+			addBaddie();
+		}
+	}
+}
+
+bool BadGuyHandler::checkLoss() {
+	for (int i = 0; i < baddies.size(); i++) {
+		if (baddies[i]->xDrawCoord() + baddies[i]->multiw() > 1800) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void BadGuyHandler::killAll() {
+	for (int i = 0; i < baddies.size(); i++) {
+		baddies[i]->takeDamage();
+		baddies[i]->takeDamage();
 	}
 }
