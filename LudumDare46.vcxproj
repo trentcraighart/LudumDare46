@@ -138,10 +138,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="badGuyHandler.h" />
+    <ClInclude Include="basicBadGuy.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="badGuyHandler.cpp" />
+    <ClCompile Include="basicBadGuy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
