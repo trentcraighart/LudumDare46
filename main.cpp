@@ -78,6 +78,7 @@ public:
 				DrawPartialDecal({ 1800.0f, 740.0f }, egg, { 64.0f, 0.0f }, { 32.0f, 32.0f }, { 4.0f, 4.0f });
 			}
 			else {
+				badGuyHandler->addBasedOnTime(time_left / 1000, fElapsedTime);
 				DrawPartialDecal({ 1800.0f, 740.0f }, egg, { 32.0f, 0.0f }, { 32.0f, 32.0f }, { 4.0f, 4.0f });
 				DrawStringDecal({ float((g_screenWidth / 2) - 256), 96.0f }, std::string("The egg got smashed!"), olc::BLACK, { 2.0f, 2.0f });
 			}
