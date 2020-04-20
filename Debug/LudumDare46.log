@@ -1,0 +1,7 @@
+﻿  badGuyHandler.cpp
+C:\Users\Trent Hart\Downloads\Coding\LudumDare\LudumDare46\LudumDare46\badGuyHandler.cpp(44,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trent Hart\Downloads\Coding\LudumDare\LudumDare46\LudumDare46\badGuyHandler.cpp(53,20): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+C:\Users\Trent Hart\Downloads\Coding\LudumDare\LudumDare46\LudumDare46\main.cpp(102,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+  LudumDare46.vcxproj -> C:\Users\Trent Hart\Downloads\Coding\LudumDare\LudumDare46\LudumDare46\Debug\LudumDare46.exe
